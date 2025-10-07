@@ -1,0 +1,79 @@
+# RPN Test Cases
+
+## Basic Operations
+./RPN "1 2 +"
+# Expected: 3
+
+./RPN "4 2 -"
+# Expected: 2
+
+./RPN "3 4 *"
+# Expected: 12
+
+./RPN "8 2 /"
+# Expected: 4
+
+## Complex Expressions (from subject)
+./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+# Expected: 42
+
+./RPN "7 7 * 7 -"
+# Expected: 42
+
+./RPN "1 2 * 2 / 2 * 2 4 - +"
+# Expected: 0
+
+## Additional Test Cases
+./RPN "5 1 2 + 4 * + 3 -"
+# Expected: 14
+
+./RPN "2 3 + 4 * 5 -"
+# Expected: 15
+
+./RPN "1 2 3 + * 4 -"
+# Expected: 1
+
+./RPN "9 3 / 2 + 1 -"
+# Expected: 4
+
+./RPN "6 2 1 + * 3 /"
+# Expected: 6
+
+## Edge Cases
+./RPN "5"
+# Expected: 5
+
+./RPN "0 5 +"
+# Expected: 5
+
+./RPN "10 0 /"
+# Expected: Error (division by zero)
+
+## Error Cases
+./RPN "(1 + 1)"
+# Expected: Error
+
+./RPN "1 +"
+# Expected: Error
+
+./RPN "1 2 3 +"
+# Expected: Error
+
+./RPN "1 2 + +"
+# Expected: Error
+
+./RPN "a b +"
+# Expected: Error
+
+./RPN "1.5 2 +"
+# Expected: Error (decimals not allowed)
+
+./RPN "10 2 +"
+# Expected: Error (numbers > 9 not allowed)
+
+./RPN ""
+# Expected: Error
+
+./RPN "1 2 + 3 4 +"
+# Expected: Error (too many numbers)
+
