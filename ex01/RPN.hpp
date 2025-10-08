@@ -3,6 +3,7 @@
 
 #include <string>
 #include <stack>
+#include <climits>
 
 class RPN
 {
@@ -16,7 +17,7 @@ private:
     
     bool isOperator(char c) const;
     bool isValidToken(char c) const;
-    int performOperation(int a, int b, char op) const;
+    long long performOperation(long long  a, long long  b, char op) const;
     void parseExpression();
     
 public:

@@ -25,28 +25,38 @@ bool RPN::isValidToken(char c) const
     return (std::isdigit(c) || isOperator(c) || c == ' ');
 }
 
-int RPN::performOperation(int a, int b, char op) const
+long long RPN::performOperation(long long a, long long b, char op) const
 {
+    long long result = 0;
+
     switch (op)
     {
-        case '+':
-            return a + b;
-        case '-':
-            return a - b;
-        case '*':
-            return a * b;
+        case '+': result = a + b; break;
+        case '-': result = a - b; break;
+        case '*': result = a * b; break;
         case '/':
             if (b == 0)
             {
-                std::cerr << "Error" << std::endl;
+                std::cerr << "Error: division by zero" << std::endl;
                 throw std::runtime_error("Division by zero");
             }
-            return a / b;
+            result = a / b;
+            break;
         default:
-            std::cerr << "Error" << std::endl;
+            std::cerr << "Error: invalid operator" << std::endl;
             throw std::runtime_error("Invalid operator");
     }
+
+    // overflow check
+    if (result > INT_MAX || result < INT_MIN)
+    {
+        std::cerr << "Error: overflow" << std::endl;
+        throw std::runtime_error("Overflow");
+    }
+
+    return result;
 }
+
 
 void RPN::parseExpression()
 {
